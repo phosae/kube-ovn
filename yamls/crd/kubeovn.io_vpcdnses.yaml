@@ -32,12 +32,18 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
             spec:
               type: object
               properties:
-                vpc:
-                  type: string
                 subnet:
+                  type: string
+                vpc:
                   type: string
             status:
               type: object
@@ -49,15 +55,17 @@ spec:
                   items:
                     type: object
                     properties:
-                      type:
+                      lastTransitionTime:
                         type: string
-                      status:
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
                         type: string
                       reason:
                         type: string
-                      message:
+                      status:
                         type: string
-                      lastUpdateTime:
-                        type: string
-                      lastTransitionTime:
+                      type:
                         type: string

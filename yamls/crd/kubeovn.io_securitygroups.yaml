@@ -1,4 +1,3 @@
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -21,32 +20,17 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
             spec:
               type: object
               properties:
-                ingressRules:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      ipVersion:
-                        type: string
-                      protocol:
-                        type: string
-                      priority:
-                        type: integer
-                      remoteType:
-                        type: string
-                      remoteAddress:
-                        type: string
-                      remoteSecurityGroup:
-                        type: string
-                      portRangeMin:
-                        type: integer
-                      portRangeMax:
-                        type: integer
-                      policy:
-                        type: string
+                allowSameGroupTraffic:
+                  type: boolean
                 egressRules:
                   type: array
                   items:
@@ -54,39 +38,60 @@ spec:
                     properties:
                       ipVersion:
                         type: string
-                      protocol:
+                      policy:
                         type: string
+                      portRangeMax:
+                        type: integer
+                      portRangeMin:
+                        type: integer
                       priority:
                         type: integer
-                      remoteType:
+                      protocol:
                         type: string
                       remoteAddress:
                         type: string
                       remoteSecurityGroup:
                         type: string
-                      portRangeMin:
-                        type: integer
-                      portRangeMax:
-                        type: integer
+                      remoteType:
+                        type: string
+                ingressRules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ipVersion:
+                        type: string
                       policy:
                         type: string
-                allowSameGroupTraffic:
-                  type: boolean
+                      portRangeMax:
+                        type: integer
+                      portRangeMin:
+                        type: integer
+                      priority:
+                        type: integer
+                      protocol:
+                        type: string
+                      remoteAddress:
+                        type: string
+                      remoteSecurityGroup:
+                        type: string
+                      remoteType:
+                        type: string
             status:
               type: object
               properties:
-                portGroup:
-                  type: string
                 allowSameGroupTraffic:
                   type: boolean
-                ingressMd5:
-                  type: string
+                egressLastSyncSuccess:
+                  type: boolean
                 egressMd5:
                   type: string
                 ingressLastSyncSuccess:
                   type: boolean
-                egressLastSyncSuccess:
-                  type: boolean
+                ingressMd5:
+                  type: string
+                portGroup:
+                  type: string
       subresources:
         status: {}
   conversion:

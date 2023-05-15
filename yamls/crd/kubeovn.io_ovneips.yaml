@@ -1,4 +1,3 @@
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -39,46 +38,54 @@ spec:
         openAPIV3Schema:
           type: object
           properties:
-            status:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
               type: object
-              properties:
-                type:
-                  type: string
-                ready:
-                  type: boolean
-                v4Ip:
-                  type: string
-                v6Ip:
-                  type: string
-                macAddress:
-                  type: string
-                conditions:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      type:
-                        type: string
-                      status:
-                        type: string
-                      reason:
-                        type: string
-                      message:
-                        type: string
-                      lastUpdateTime:
-                        type: string
-                      lastTransitionTime:
-                        type: string
             spec:
               type: object
               properties:
                 externalSubnet:
                   type: string
+                macAddress:
+                  type: string
                 type:
                   type: string
                 v4Ip:
                   type: string
                 v6Ip:
                   type: string
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      lastTransitionTime:
+                        type: string
+                        format: date-time
+                      lastUpdateTime:
+                        type: string
+                        format: date-time
+                      message:
+                        type: string
+                      reason:
+                        type: string
+                      status:
+                        type: string
+                      type:
+                        type: string
                 macAddress:
+                  type: string
+                ready:
+                  type: boolean
+                type:
+                  type: string
+                v4Ip:
+                  type: string
+                v6Ip:
                   type: string
